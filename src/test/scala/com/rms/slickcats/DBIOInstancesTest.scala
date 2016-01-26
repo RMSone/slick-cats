@@ -19,7 +19,7 @@ import scala.util.{Failure, Success}
 
 class DBIOInstancesTest extends FunSuite with Matchers with GeneratorDrivenPropertyChecks with Discipline with AllInstances with AllSyntax with DBIOInstances {
   val timeout = 3.seconds
-  val db = slick.jdbc.JdbcBackend.Database.forURL("jdbc:h2:mem:contract", driver = "org.h2.Driver")
+  val db = slick.memory.MemoryDriver.backend.Database(global)
 
   def dbioXor[A](f: DBIO[A]): DBIO[Xor[Throwable, A]] =
     f.map(Xor.right[Throwable, A]).asTry.map {
