@@ -12,10 +12,10 @@ import scala.util.{Failure, Success}
 object DBIOInstances extends DBIOInstances
 
 /**
- * Note to the user: instances are only provided for `DBIO[A]`
- * and not for `DBIOAction[A, NoStream, Effect.All]` or any other DBIOAction.
+ * Instances are only provided for `DBIO[A]` and not for `DBIOAction[A, NoStream, Effect.All]`
+ * or any other DBIOAction.
  * An implicit `ExecutionContext` must be in scope for the type class conversion to occur.
- * It will otherwise fail with not very helpful errors.
+ * It will otherwise fail with rather unhelpful errors.
  */
 trait DBIOInstances extends DBIOInstances0 {
   implicit def dbioInstance(implicit ec: ExecutionContext): MonadError[DBIO, Throwable] with CoflatMap[DBIO] =
