@@ -1,5 +1,5 @@
 
-organization := "com.rms"
+organization := "com.rms.miu"
 
 name := "slick-cats"
 

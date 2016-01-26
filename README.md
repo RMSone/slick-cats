@@ -17,7 +17,7 @@ SlickCats
 SlickCats is not yet published but can be used by publishing locally via `sbt publishLocal` and then adding
 the following to your build definition:
 ```scala
-libraryDependencies += "com.rms" %% "slick-cats" % "1.0-SNAPSHOT"
+libraryDependencies += "com.rms.miu" %% "slick-cats" % "1.0-SNAPSHOT"
 ```
 
 ## Accessing the Instances
@@ -26,7 +26,7 @@ Some or all of the following imports may be needed:
 import cats._
 import cats.implicits._
 import slick.dbio._
-import com.rms.slickcats.DBIOInstances._
+import com.rms.miu.slickcats.DBIOInstances._
 ```
 Additionally, be sure to have an implicit `ExecutionContext` in scope. The implicit conversions require it
 and will fail with non obvious errors if it's missing.

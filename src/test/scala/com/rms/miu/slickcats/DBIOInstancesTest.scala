@@ -1,4 +1,4 @@
-package com.rms.slickcats
+package com.rms.miu.slickcats
 
 import cats.data.{Xor, XorT}
 import cats.laws.discipline._

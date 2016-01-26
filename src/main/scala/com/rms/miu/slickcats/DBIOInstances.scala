@@ -1,4 +1,4 @@
-package com.rms.slickcats
+package com.rms.miu.slickcats
 
 import cats._
 import cats.implicits._

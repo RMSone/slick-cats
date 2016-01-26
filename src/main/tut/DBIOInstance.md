@@ -28,7 +28,7 @@ def monoid[A : Monoid](fa: A) = ()
 
 we can then use them with `DBIO` by importing
 ```tut
-import com.rms.slickcats.DBIOInstances._
+import com.rms.miu.slickcats.DBIOInstances._
 ```
 Be sure to also have an implicit `ExecutionContext` in scope. The implicit conversions require it
 and will fail with non obvious errors if it's missing.
