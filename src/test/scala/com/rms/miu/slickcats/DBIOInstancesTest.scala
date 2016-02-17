@@ -2,6 +2,7 @@ package com.rms.miu.slickcats
 
 import cats.data.{Xor, XorT}
 import cats.laws.discipline._
+import cats.laws.discipline.eq.tuple3Eq
 import cats.std.AllInstances
 import cats.{Comonad, Eq}
 import org.scalacheck.Arbitrary.arbitrary
@@ -33,35 +34,32 @@ class DBIOInstancesTest extends FunSuite with Matchers with Discipline with AllI
       }
     }
 
-  implicit val throwableEq: Eq[Throwable] = Eq.fromUniversalEquals
+  implicit def arbDBIO[T](implicit a: Arbitrary[T]): Arbitrary[DBIO[T]] =
+    Arbitrary(Gen.oneOf(arbitrary[T].map(DBIO.successful), arbitrary[Throwable].map(DBIO.failed)))
 
+  implicit val throwableEq: Eq[Throwable] = Eq.fromUniversalEquals
   implicit val comonad: Comonad[DBIO] = dbioComonad(timeout, db)
+  implicit val iso = CartesianTests.Isomorphisms.invariant[DBIO]
 
   // Need non-fatal Throwable for Future recoverWith/handleError
   implicit val nonFatalArbitrary: Arbitrary[Throwable] =
     Arbitrary(arbitrary[Exception].map(identity))
 
-  implicit def arbDBIO[T](implicit a: Arbitrary[T]): Arbitrary[DBIO[T]] =
-    Arbitrary(Gen.oneOf(arbitrary[T].map(DBIO.successful), arbitrary[Throwable].map(DBIO.failed)))
-
   /*
-    For reasons that are not clear to me, the implicit resolution fails unless the last implicit
-    (EqXorTFEA: Eq[XorT[F, E, A]]) is provided explicitly. Among the errors that come out
-    are:
-      [error]  found   : cats.Eq[slick.dbio.DBIO[Throwable]]
-      [error]     (which expands to)  algebra.Eq[slick.dbio.DBIOAction[Throwable,slick.dbio.NoStream,slick.dbio.Effect.All]]
-      [error]  required: algebra.Eq[cats.data.XorT[[+R]slick.dbio.DBIOAction[R,slick.dbio.NoStream,slick.dbio.Effect.All],Throwable,Int]]
-    and:
-      diverging implicit expansion for type org.scalacheck.Arbitrary[T]
-        [error] starting with value arbInt in trait ArbitraryLowPriority
-        [error]     implicitly))
-    See Gitter discussion that might be relevant: https://gitter.im/non/cats?at=564798f18b242470793db879
-   */
-  checkAll("DBIO[Int]", MonadErrorTests[DBIO, Throwable].monadError[Int, Int, Int](
-    implicitly, implicitly, implicitly, implicitly, implicitly, implicitly,
-    implicitly, implicitly, implicitly, implicitly, implicitly, implicitly,
-    implicitly, implicitly, implicitly, implicitly, implicitly, implicitly,
-    implicitly[Eq[XorT[DBIO, Throwable, Int]]]))
+  For reasons that are not clear to me, the implicit resolution fails unless `Eq` instance for `XorT[DBOI]`
+  (EqXorTFEA: Eq[XorT[F, E, A]]) is typed explicitly. Among the errors that come out
+  are:
+    [error]  found   : cats.Eq[slick.dbio.DBIO[Throwable]]
+    [error]     (which expands to)  algebra.Eq[slick.dbio.DBIOAction[Throwable,slick.dbio.NoStream,slick.dbio.Effect.All]]
+    [error]  required: algebra.Eq[cats.data.XorT[[+R]slick.dbio.DBIOAction[R,slick.dbio.NoStream,slick.dbio.Effect.All],Throwable,Int]]
+  and:
+    diverging implicit expansion for type org.scalacheck.Arbitrary[T]
+      [error] starting with value arbInt in trait ArbitraryLowPriority
+      [error]     implicitly))
+  See gitter discussion that might be relevant: https://gitter.im/non/cats?at=564798f18b242470793db879
+ */
+  implicit val eqXorTDbio = implicitly[Eq[XorT[DBIO, Throwable, Int]]]
 
+  checkAll("DBIO[Int]", MonadErrorTests[DBIO, Throwable].monadError[Int, Int, Int])
   checkAll("DBIO[Int]", ComonadTests[DBIO].comonad[Int, Int, Int])
 }

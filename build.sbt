@@ -27,7 +27,7 @@ scalacOptions ++= Seq(
 )
 
 libraryDependencies ++= Seq(
-    "org.spire-math" %% "cats" % "0.3.0",
+    "org.typelevel" %% "cats" % "0.4.1",
     "com.typesafe.slick" %% "slick" % "3.1.1",
     "org.scalatest" %% "scalatest" % "3.0.0-M7" % "test",
     "org.scalacheck" %% "scalacheck" % "1.12.5" % "test"
