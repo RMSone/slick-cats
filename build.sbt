@@ -14,6 +14,7 @@ scalacOptions ++= Seq(
   "-encoding", "UTF-8",
   "-feature",
   "-language:implicitConversions",
+  "-language:higherKinds",
   "-unchecked",
   "-Xfatal-warnings",
   "-Xlint",
@@ -27,11 +28,24 @@ scalacOptions ++= Seq(
 )
 
 libraryDependencies ++= Seq(
-    "org.typelevel" %% "cats" % "0.4.1",
-    "com.typesafe.slick" %% "slick" % "3.1.1",
-    "org.scalatest" %% "scalatest" % "3.0.0-M7" % "test",
-    "org.scalacheck" %% "scalacheck" % "1.12.5" % "test"
-  )
+  "org.typelevel" %% "cats" % "0.4.1",
+  "com.typesafe.slick" %% "slick" % "3.1.1",
+  "org.scalatest" %% "scalatest" % "3.0.0-M7" % "test",
+  "org.scalacheck" %% "scalacheck" % "1.12.5" % "test"
+)
+
+scalacOptions in (Compile, console) ~= (_ filterNot (_ == "-Ywarn-unused-import"))
+
+//Sets up console with imports as well as default execition context to make like easier
+initialCommands in console := 
+  """
+  import cats._
+  import cats.implicits._
+  import slick.dbio._
+  import com.rms.miu.slickcats.DBIOInstances._
+  import scala.concurrent.ExecutionContext.Implicits.global
+  """
+addCompilerPlugin("org.spire-math" %% "kind-projector" % "0.7.1")
 
 tutSettings
 
