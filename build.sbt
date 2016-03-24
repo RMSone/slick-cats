@@ -5,7 +5,7 @@ name := "slick-cats"
 
 version := "1.0-SNAPSHOT"
 
-scalaVersion := "2.11.7"
+scalaVersion := "2.11.8"
 
 description := "cats and slick"
 
@@ -14,6 +14,7 @@ scalacOptions ++= Seq(
   "-encoding", "UTF-8",
   "-feature",
   "-language:implicitConversions",
+  "-language:higherKinds",
   "-unchecked",
   "-Xfatal-warnings",
   "-Xlint",
@@ -23,7 +24,7 @@ scalacOptions ++= Seq(
   "-Ywarn-numeric-widen",
   "-Ywarn-value-discard",
   "-Xfuture",
-  "-Ywarn-unused-import" // This might not work well. Try it out for now
+  "-Ywarn-unused-import"
 )
 
 libraryDependencies ++= Seq(
@@ -36,3 +37,5 @@ libraryDependencies ++= Seq(
 tutSettings
 
 tutScalacOptions := tutScalacOptions.value.filterNot(_ == "-Ywarn-unused-import")
+
+tutTargetDirectory := baseDirectory.value
