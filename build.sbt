@@ -14,6 +14,7 @@ scalacOptions ++= Seq(
   "-encoding", "UTF-8",
   "-feature",
   "-language:implicitConversions",
+  "-language:higherKinds",
   "-unchecked",
   "-Xfatal-warnings",
   "-Xlint",
@@ -36,3 +37,5 @@ libraryDependencies ++= Seq(
 tutSettings
 
 tutScalacOptions := tutScalacOptions.value.filterNot(_ == "-Ywarn-unused-import")
+
+tutTargetDirectory := baseDirectory.value
