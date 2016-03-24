@@ -5,7 +5,7 @@ name := "slick-cats"
 
 version := "1.0-SNAPSHOT"
 
-scalaVersion := "2.11.7"
+scalaVersion := "2.11.8"
 
 description := "cats and slick"
 

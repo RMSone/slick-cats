@@ -32,7 +32,7 @@ Additionally, be sure to have an implicit `ExecutionContext` in scope. The impli
 and will fail with non obvious errors if it's missing.
 ```scala
 scala> implicitly[Monad[DBIO]]
-<console>:24: error: could not find implicit value for parameter e: cats.Monad[slick.dbio.DBIO]
+<console>:25: error: could not find implicit value for parameter e: cats.Monad[slick.dbio.DBIO]
        implicitly[Monad[DBIO]]
                  ^
 ```
@@ -78,28 +78,28 @@ success: slick.dbio.DBIO[String] = SuccessAction(hello)
 will _not_ compile
 ```scala
 scala> monad(fail1)
-<console>:28: error: no type parameters for method monad: (fa: F[A])(implicit evidence$1: cats.Monad[F])F[A] exist so that it can be applied to arguments (slick.dbio.DBIOAction[String,slick.dbio.NoStream,slick.dbio.Effect.All])
+<console>:29: error: no type parameters for method monad: (fa: F[A])(implicit evidence$1: cats.Monad[F])F[A] exist so that it can be applied to arguments (slick.dbio.DBIOAction[String,slick.dbio.NoStream,slick.dbio.Effect.All])
  --- because ---
 argument expression's type is not compatible with formal parameter type;
  found   : slick.dbio.DBIOAction[String,slick.dbio.NoStream,slick.dbio.Effect.All]
  required: ?F[?A]
        monad(fail1)
        ^
-<console>:28: error: type mismatch;
+<console>:29: error: type mismatch;
  found   : slick.dbio.DBIOAction[String,slick.dbio.NoStream,slick.dbio.Effect.All]
  required: F[A]
        monad(fail1)
              ^
 
 scala> monad(fail2)
-<console>:28: error: no type parameters for method monad: (fa: F[A])(implicit evidence$1: cats.Monad[F])F[A] exist so that it can be applied to arguments (slick.dbio.DBIOAction[String,slick.dbio.NoStream,slick.dbio.Effect])
+<console>:29: error: no type parameters for method monad: (fa: F[A])(implicit evidence$1: cats.Monad[F])F[A] exist so that it can be applied to arguments (slick.dbio.DBIOAction[String,slick.dbio.NoStream,slick.dbio.Effect])
  --- because ---
 argument expression's type is not compatible with formal parameter type;
  found   : slick.dbio.DBIOAction[String,slick.dbio.NoStream,slick.dbio.Effect]
  required: ?F[?A]
        monad(fail2)
        ^
-<console>:28: error: type mismatch;
+<console>:29: error: type mismatch;
  found   : slick.dbio.DBIOAction[String,slick.dbio.NoStream,slick.dbio.Effect]
  required: F[A]
        monad(fail2)
