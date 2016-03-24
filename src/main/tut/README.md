@@ -78,6 +78,6 @@ monad(success)
 will compile fine.
 
 ## Extras
-This README is compiled using [tut](https://github.com/tpolecat/tut) to ensure that only real examples are given.
-
+This README is compiled using [tut](https://github.com/tpolecat/tut) to ensure that only working examples are given.
+Feedback of any kind is appreciated. Especially if you have any ideas on getting around the `DBIOAction` issue above.
 
