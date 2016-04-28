@@ -2,7 +2,6 @@ package com.rms.miu.slickcats
 
 import cats.data.{Xor, XorT}
 import cats.laws.discipline._
-import cats.laws.discipline.eq.tuple3Eq
 import cats.std.AllInstances
 import cats.{Comonad, Eq}
 import org.scalacheck.Arbitrary.arbitrary
