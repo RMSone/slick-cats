@@ -49,7 +49,6 @@ implicitly[Applicative[DBIO]]
 
 If therea Monoid exists for `A`, here taken as Int, then the following is also available
 ```tut:silent
-implicit val addSemiInt = Monoid.additive[Int]
 implicitly[Group[DBIO[Int]]]
 implicitly[Semigroup[DBIO[Int]]]
 implicitly[Monoid[DBIO[Int]]]
