@@ -17,8 +17,15 @@ SlickCats
 SlickCats is not yet published but can be used by publishing locally via `sbt publishLocal` and then adding
 the following to your build definition:
 ```scala
-libraryDependencies += "com.rms.miu" %% "slick-cats" % "1.0-SNAPSHOT"
+libraryDependencies += "com.rms.miu" %% "slick-cats" % version
 ```
+
+Because of possible binary incompatibilities here are the dependency versions used in each release
+| slick-cats version | slick version | cats version |
+|:------------------:|:-------------:|:------------:|
+|         0.1        |     3.1.1     |     0.5.0    |
+|         0.2        |     3.1.1     |     0.6.0    |
+
 
 ## Accessing the Instances
 Some or all of the following imports may be needed:
@@ -47,7 +54,7 @@ implicitly[Functor[DBIO]]
 implicitly[Applicative[DBIO]]
 ```
 
-If therea Monoid exists for `A`, here taken as Int, then the following is also available
+If a Monoid exists for `A`, here taken as Int, then the following is also available
 ```tut:silent
 implicitly[Group[DBIO[Int]]]
 implicitly[Semigroup[DBIO[Int]]]

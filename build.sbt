@@ -3,7 +3,7 @@ organization := "com.rms.miu"
 
 name := "slick-cats"
 
-version := "1.0-SNAPSHOT"
+version := "0.2-SNAPSHOT"
 
 scalaVersion := "2.11.8"
 
