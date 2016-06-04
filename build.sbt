@@ -1,4 +1,3 @@
-
 organization := "com.rms.miu"
 
 name := "slick-cats"
@@ -39,3 +38,16 @@ tutSettings
 tutScalacOptions := tutScalacOptions.value.filterNot(_ == "-Ywarn-unused-import")
 
 tutTargetDirectory := baseDirectory.value
+
+//s3 maven repo
+
+val repoSuffix = "mvn-repo.miuinsights.com"
+val releaseRepo = s3(s"releases.$repoSuffix")
+val snapshotRepo = s3(s"snapshots.$repoSuffix")
+
+publishMavenStyle := false
+
+publishTo := {
+  val repo = if (isSnapshot.value) snapshotRepo else releaseRepo
+  Some(s3resolver.value(s"$repo s3 bucket", repo) withIvyPatterns)
+}
