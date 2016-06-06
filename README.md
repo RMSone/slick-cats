@@ -21,6 +21,7 @@ libraryDependencies += "com.rms.miu" %% "slick-cats" % version
 ```
 
 Because of possible binary incompatibilities here are the dependency versions used in each release
+
 | slick-cats version | slick version | cats version |
 |:------------------:|:-------------:|:------------:|
 |         0.1        |     3.1.1     |     0.5.0    |
