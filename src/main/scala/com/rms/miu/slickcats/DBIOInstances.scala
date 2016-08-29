@@ -24,6 +24,17 @@ trait DBIOInstances extends DBIOInstances0 {
 
       override def flatMap[A, B](fa: DBIO[A])(f: (A) => DBIO[B]): DBIO[B] = fa.flatMap(f)
 
+      /**
+       * While this is roughly the same implementation as in `FutureInstances`,
+       * I'm not entirely sure this is indeed stack safe. It certainly looks
+       * like it should be.
+       */
+      override def tailRecM[A, B](a: A)(f: A => DBIO[Either[A, B]]): DBIO[B] =
+        f(a).flatMap {
+          case Left(a1) => tailRecM(a1)(f)
+          case Right(b) => DBIO.successful(b)
+        }
+
       override def handleError[A](fea: DBIO[A])(f: (Throwable) => A): DBIO[A] =
         fea.asTry.map {
           case Success(a) => a

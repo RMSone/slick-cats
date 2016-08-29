@@ -2,7 +2,7 @@ package com.rms.miu.slickcats
 
 import cats.data.{Xor, XorT}
 import cats.laws.discipline._
-import cats.std.AllInstances
+import cats.instances.AllInstances
 import cats.{Comonad, Eq}
 import org.scalacheck.Arbitrary.arbitrary
 import org.scalacheck.{Arbitrary, Gen}
