@@ -25,7 +25,7 @@ scalacOptions ++= Seq(
 )
 
 libraryDependencies ++= Seq(
-    "org.typelevel" %% "cats" % "0.7.0",
+    "org.typelevel" %% "cats" % "0.7.2",
     "com.typesafe.slick" %% "slick" % "3.1.1",
     "org.scalatest" %% "scalatest" % "3.0.0-M8" % "test",
     "org.scalacheck" %% "scalacheck" % "1.12.5" % "test"
