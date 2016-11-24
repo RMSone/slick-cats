@@ -1,8 +1,10 @@
 package com.rms.miu.slickcats
 
-import cats.data.{Xor, XorT}
+import cats.data.EitherT
 import cats.laws.discipline._
+import cats.implicits._
 import cats.instances.AllInstances
+import cats.laws.discipline.CartesianTests.Isomorphisms
 import cats.{Comonad, Eq}
 import org.scalacheck.Arbitrary.arbitrary
 import org.scalacheck.{Arbitrary, Gen}
@@ -16,13 +18,13 @@ import scala.concurrent.duration._
 import scala.util.{Failure, Success}
 
 class DBIOInstancesTest extends FunSuite with Matchers with Discipline with AllInstances with DBIOInstances {
-  val timeout = 3.seconds
-  val db = slick.memory.MemoryDriver.backend.Database(global)
+  private val timeout = 3.seconds
+  private val db = slick.memory.MemoryDriver.backend.Database(global)
 
-  def dbioXor[A](f: DBIO[A]): DBIO[Xor[Throwable, A]] =
-    f.map(Xor.right[Throwable, A]).asTry.map {
+  def dbioXor[A](f: DBIO[A]): DBIO[Either[Throwable, A]] =
+    f.map(Right[Throwable, A]).asTry.map {
       case Success(x) => x
-      case Failure(t) => Xor.left(t)
+      case Failure(t) => Left(t)
     }
 
   implicit def eqfa[A: Eq]: Eq[DBIO[A]] =
@@ -38,7 +40,7 @@ class DBIOInstancesTest extends FunSuite with Matchers with Discipline with AllI
 
   implicit val throwableEq: Eq[Throwable] = Eq.fromUniversalEquals
   implicit val comonad: Comonad[DBIO] = dbioComonad(timeout, db)
-  implicit val iso = CartesianTests.Isomorphisms.invariant[DBIO]
+  implicit val iso: Isomorphisms[DBIO] = CartesianTests.Isomorphisms.invariant[DBIO]
 
   // Need non-fatal Throwable for Future recoverWith/handleError
   implicit val nonFatalArbitrary: Arbitrary[Throwable] =
@@ -57,7 +59,7 @@ class DBIOInstancesTest extends FunSuite with Matchers with Discipline with AllI
       [error]     implicitly))
   See gitter discussion that might be relevant: https://gitter.im/non/cats?at=564798f18b242470793db879
  */
-  implicit val eqXorTDbio = implicitly[Eq[XorT[DBIO, Throwable, Int]]]
+  implicit val eqXorTDbio: Eq[EitherT[DBIO, Throwable, Int]] = implicitly[Eq[EitherT[DBIO, Throwable, Int]]]
 
   checkAll("DBIO[Int]", MonadErrorTests[DBIO, Throwable].monadError[Int, Int, Int])
   checkAll("DBIO[Int]", ComonadTests[DBIO].comonad[Int, Int, Int])
