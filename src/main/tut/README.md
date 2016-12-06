@@ -27,7 +27,7 @@ Because of possible binary incompatibilities here are the dependency versions us
 |         0.1        |     3.1.1     |     0.5.0    |
 |         0.2        |     3.1.1     |     0.6.0    |
 |         0.3        |     3.1.1     |     0.7.0    |
-
+|         0.4        |     3.1.1     |     0.8.x    |
 
 ## Accessing the Instances
 Some or all of the following imports may be needed:

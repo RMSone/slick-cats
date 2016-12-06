@@ -1,10 +1,8 @@
 organization := "com.rms.miu"
-
 name := "slick-cats"
+description := "cats and slick"
 
 scalaVersion := "2.11.8"
-
-description := "cats and slick"
 
 scalacOptions ++= Seq(
   "-deprecation",
@@ -25,27 +23,24 @@ scalacOptions ++= Seq(
 )
 
 libraryDependencies ++= Seq(
-    "org.typelevel" %% "cats" % "0.7.2",
-    "com.typesafe.slick" %% "slick" % "3.1.1",
-    "org.scalatest" %% "scalatest" % "3.0.0-M8" % "test",
-    "org.scalacheck" %% "scalacheck" % "1.12.5" % "test"
-  )
+  "org.typelevel" %% "cats" % "0.8.1",
+  "com.typesafe.slick" %% "slick" % "3.1.1",
+  "org.scalatest" %% "scalatest" % "3.0.1" % Test,
+  "org.scalacheck" %% "scalacheck" % "1.13.4" % Test
+)
 
 tutSettings
-
 tutScalacOptions := tutScalacOptions.value.filterNot(_ == "-Ywarn-unused-import")
-
 tutTargetDirectory := baseDirectory.value
 
-//s3 maven repo
+// s3 maven repo
 
 val repoSuffix = "mvn-repo.miuinsights.com"
 val releaseRepo = s3(s"releases.$repoSuffix")
 val snapshotRepo = s3(s"snapshots.$repoSuffix")
 
 publishMavenStyle := false
-
 publishTo := {
   val repo = if (isSnapshot.value) snapshotRepo else releaseRepo
-  Some(s3resolver.value(s"$repo s3 bucket", repo) withIvyPatterns)
+  Some(s3resolver.value(s"$repo s3 bucket", repo).withIvyPatterns)
 }
