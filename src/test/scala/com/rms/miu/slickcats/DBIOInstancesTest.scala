@@ -19,7 +19,7 @@ import scala.util.{Failure, Success}
 
 class DBIOInstancesTest extends FunSuite with Matchers with Discipline with AllInstances with DBIOInstances {
   private val timeout = 3.seconds
-  private val db = slick.memory.MemoryProfile.backend.Database(global)
+  private val db = slick.memory.MemoryDriver.backend.Database(global)
 
   def dbioEither[A](f: DBIO[A]): DBIO[Either[Throwable, A]] =
     f.map(Right[Throwable, A]).asTry.map {
