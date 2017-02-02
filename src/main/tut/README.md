@@ -30,6 +30,7 @@ Because of possible binary incompatibilities here are the dependency versions us
 |         0.4        |     3.1.1     |     0.8.x    |
 |         0.4.1      |     3.1.1     |     0.9.x    |
 |         0.5-M1     |     3.2.0-M2  |     0.8.x    |
+|         0.5-M2     |     3.2.0-M2  |     0.9.x    |
 
 ## Accessing the Instances
 Some or all of the following imports may be needed:
