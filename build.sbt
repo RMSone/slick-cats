@@ -27,12 +27,12 @@ scalacOptions ++= Seq(
 libraryDependencies ++= Seq(
   "org.typelevel" %% "cats" % "0.9.0",
   "com.typesafe.slick" %% "slick" % "3.2.0",
-  "org.scalatest" %% "scalatest" % "3.0.1" % Test,
-  "org.scalacheck" %% "scalacheck" % "1.13.4" % Test
+  "org.scalatest" %% "scalatest" % "3.0.3" % Test,
+  "org.scalacheck" %% "scalacheck" % "1.13.5" % Test
 )
 
-tutSettings
-tutScalacOptions := tutScalacOptions.value.filterNot(_ == "-Ywarn-unused-import")
+enablePlugins(TutPlugin)
+scalacOptions in Tut --= Seq("-Ywarn-unused-import", "-Xlint")
 tutTargetDirectory := baseDirectory.value
 
 // s3 maven repo
