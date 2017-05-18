@@ -4,7 +4,7 @@ We want to make contributing to this project as easy and transparent as possible
 ## Getting Started
 
 * Make sure you have a [GitHub account](https://github.com/signup/free)
-* Submit the [RMS Contributor License Agreement](https://www.clahub.com/agreements/RMSone/slick-cats")
+* Submit the [RMS Contributor License Agreement](https://www.clahub.com/agreements/RMSone/slick-cats)
 * Submit a ticket for your issue, assuming one does not already exist.
  * Clearly describe the issue including steps to reproduce when it is a bug.
  * Make sure you fill in the earliest version that you know has the issue.
