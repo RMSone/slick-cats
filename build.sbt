@@ -35,14 +35,10 @@ enablePlugins(TutPlugin)
 scalacOptions in Tut --= Seq("-Ywarn-unused-import", "-Xlint")
 tutTargetDirectory := baseDirectory.value
 
-// s3 maven repo
-
-val repoSuffix = "mvn-repo.miuinsights.com"
-val releaseRepo = s3(s"releases.$repoSuffix")
-val snapshotRepo = s3(s"snapshots.$repoSuffix")
-
-publishMavenStyle := false
-publishTo := {
-  val repo = if (isSnapshot.value) snapshotRepo else releaseRepo
-  Some(s3resolver.value(s"$repo s3 bucket", repo).withIvyPatterns)
-}
+licenses += ("BSD New", url("https://opensource.org/licenses/BSD-3-Clause"))
+publishMavenStyle := true
+bintrayOrganization := Some("rms")
+bintrayRepository := "maven"
+bintrayPackage := "slick-cats"
+bintrayVcsUrl := Some("git:git@github.com:rmsone/slick-cats.git")
+bintrayReleaseOnPublish in ThisBuild := false
