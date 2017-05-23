@@ -3,9 +3,7 @@ name := "slick-cats"
 description := "cats and slick"
 
 scalaVersion := "2.12.2"
-
 crossScalaVersions := Seq("2.11.11", "2.12.2")
-releaseCrossBuild := true
 
 scalacOptions ++= Seq(
   "-deprecation",
