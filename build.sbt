@@ -34,9 +34,25 @@ scalacOptions in Tut --= Seq("-Ywarn-unused-import", "-Xlint")
 tutTargetDirectory := baseDirectory.value
 
 licenses += ("BSD New", url("https://opensource.org/licenses/BSD-3-Clause"))
+homepage := Some(url("https://github.com/rmsone/slick-cats"))
+scmInfo := Some(
+  ScmInfo(
+    url("https://github.com/rmsone/slick-cats"),
+    "scm:git@github.com:rmsone/slick-cats.git"
+  )
+)
+developers := List(
+  Developer(id="23will", name="William Duncan", email="", url=url("https://github.com/23will")),
+  Developer(id="tvaroh", name="Alexander Semenov", email="", url=url("https://github.com/tvaroh")),
+  Developer(id="frosforever", name="Yosef Fertel", email="", url=url("https://github.com/frosforever"))
+)
+
 publishMavenStyle := true
-bintrayOrganization := Some("rms")
-bintrayRepository := "maven"
-bintrayPackage := "slick-cats"
-bintrayVcsUrl := Some("git:git@github.com:rmsone/slick-cats.git")
-bintrayReleaseOnPublish in ThisBuild := false
+publishTo := Some(
+  if (isSnapshot.value)
+    Opts.resolver.sonatypeSnapshots
+  else
+    Opts.resolver.sonatypeStaging
+)
+
+pgpReadOnly := false
