@@ -54,5 +54,3 @@ publishTo := Some(
   else
     Opts.resolver.sonatypeStaging
 )
-
-pgpReadOnly := false
