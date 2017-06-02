@@ -14,8 +14,7 @@ SlickCats
 * Equals
 
 ## Using
-SlickCats is not yet published but can be used by publishing locally via `sbt publishLocal` and then adding
-the following to your build definition:
+To add *slick-cats* dependency to a project, add the following to your build definition:
 ```scala
 libraryDependencies += "com.rms.miu" %% "slick-cats" % version
 ```
@@ -32,6 +31,9 @@ Because of possible binary incompatibilities here are the dependency versions us
 |         0.5-M1     |     3.2.0-M2  |     0.8.x    |
 |         0.5-M2     |     3.2.0-M2  |     0.9.x    |
 |         0.5        |     3.2.0     |     0.9.x    |
+|         0.6        |     3.2.0     |     0.9.x    |
+
+Artifacts are publicly available on Maven Central starting from version *0.6*.
 
 ## Accessing the Instances
 Some or all of the following imports may be needed:
