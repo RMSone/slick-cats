@@ -2,8 +2,8 @@ organization := "com.rms.miu"
 name := "slick-cats"
 description := "cats and slick"
 
-scalaVersion := "2.12.2"
-crossScalaVersions := Seq("2.11.11", "2.12.2")
+scalaVersion := "2.12.3"
+crossScalaVersions := Seq("2.11.11", "2.12.3")
 
 scalacOptions ++= Seq(
   "-deprecation",
@@ -23,9 +23,10 @@ scalacOptions ++= Seq(
 )
 
 libraryDependencies ++= Seq(
-  "org.typelevel" %% "cats" % "0.9.0",
-  "com.typesafe.slick" %% "slick" % "3.2.0",
-  "org.scalatest" %% "scalatest" % "3.0.3" % Test,
+  "org.typelevel" %% "cats-core" % "1.0.0-MF",
+  "org.typelevel" %% "cats-laws" % "1.0.0-MF",
+  "com.typesafe.slick" %% "slick" % "3.2.1",
+  "org.scalatest" %% "scalatest" % "3.0.4" % Test,
   "org.scalacheck" %% "scalacheck" % "1.13.5" % Test
 )
 
