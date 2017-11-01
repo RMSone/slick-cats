@@ -21,18 +21,19 @@ libraryDependencies += "com.rms.miu" %% "slick-cats" % version
 
 Because of possible binary incompatibilities here are the dependency versions used in each release
 
-| slick-cats version | slick version | cats version |
-|:------------------:|:-------------:|:------------:|
-|         0.1        |     3.1.1     |     0.5.0    |
-|         0.2        |     3.1.1     |     0.6.0    |
-|         0.3        |     3.1.1     |     0.7.0    |
-|         0.4        |     3.1.1     |     0.8.x    |
-|         0.4.1      |     3.1.1     |     0.9.x    |
-|         0.5-M1     |     3.2.0-M2  |     0.8.x    |
-|         0.5-M2     |     3.2.0-M2  |     0.9.x    |
-|         0.5        |     3.2.0     |     0.9.x    |
-|         0.6        |     3.2.0     |     0.9.x    |
-|         0.7-MF     |     3.2.1     |     1.0.0-MF |
+| slick-cats version | slick version | cats version  |
+|:------------------:|:-------------:|:------------: |
+|         0.1        |     3.1.1     |     0.5.0     |
+|         0.2        |     3.1.1     |     0.6.0     |
+|         0.3        |     3.1.1     |     0.7.0     |
+|         0.4        |     3.1.1     |     0.8.x     |
+|         0.4.1      |     3.1.1     |     0.9.x     |
+|         0.5-M1     |     3.2.0-M2  |     0.8.x     |
+|         0.5-M2     |     3.2.0-M2  |     0.9.x     |
+|         0.5        |     3.2.0     |     0.9.x     |
+|         0.6        |     3.2.0     |     0.9.x     |
+|         0.7-MF     |     3.2.1     |     1.0.0-MF  |
+|         0.7-RC1    |     3.2.1     |     1.0.0-RC1 |
 
 Artifacts are publicly available on Maven Central starting from version *0.6*.
 

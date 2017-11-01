@@ -11,7 +11,7 @@ package com.rms.miu.slickcats
 import cats.data.EitherT
 import cats.implicits._
 import cats.instances.AllInstances
-import cats.laws.discipline.CartesianTests.Isomorphisms
+import cats.laws.discipline.SemigroupalTests.Isomorphisms
 import cats.laws.discipline._
 import cats.{Comonad, Eq}
 import org.scalacheck.Arbitrary.arbitrary
@@ -58,7 +58,7 @@ class DBIOInstancesTest extends FunSuite with Matchers with Discipline with AllI
 
   implicit val throwableEq: Eq[Throwable] = Eq.fromUniversalEquals
   implicit val comonad: Comonad[DBIO] = dbioComonad(timeout, db)
-  implicit val iso: Isomorphisms[DBIO] = CartesianTests.Isomorphisms.invariant[DBIO]
+  implicit val iso: Isomorphisms[DBIO] = SemigroupalTests.Isomorphisms.invariant[DBIO]
 
   // Need non-fatal Throwable for Future recoverWith/handleError
   implicit val nonFatalArbitrary: Arbitrary[Throwable] =
