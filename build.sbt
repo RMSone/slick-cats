@@ -23,8 +23,8 @@ scalacOptions ++= Seq(
 )
 
 libraryDependencies ++= Seq(
-  "org.typelevel" %% "cats-core" % "1.0.0-RC1",
-  "org.typelevel" %% "cats-laws" % "1.0.0-RC1",
+  "org.typelevel" %% "cats-core" % "1.0.1",
+  "org.typelevel" %% "cats-laws" % "1.0.1",
   "com.typesafe.slick" %% "slick" % "3.2.1",
   "org.scalatest" %% "scalatest" % "3.0.4" % Test,
   "org.scalacheck" %% "scalacheck" % "1.13.5" % Test
