@@ -22,11 +22,13 @@ scalacOptions ++= Seq(
   "-Ywarn-unused-import"
 )
 
+val catsVersion = "1.2.0"
+
 libraryDependencies ++= Seq(
-  "org.typelevel" %% "cats-core" % "1.0.1",
-  "org.typelevel" %% "cats-laws" % "1.0.1",
-  "com.typesafe.slick" %% "slick" % "3.2.1",
-  "org.scalatest" %% "scalatest" % "3.0.4" % Test,
+  "com.typesafe.slick" %% "slick" % "3.2.3",
+  "org.typelevel" %% "cats-core" % catsVersion,
+  "org.typelevel" %% "cats-laws" % catsVersion % Test,
+  "org.scalatest" %% "scalatest" % "3.0.5" % Test,
   "org.scalacheck" %% "scalacheck" % "1.13.5" % Test
 )
 
