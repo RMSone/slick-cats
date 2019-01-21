@@ -36,6 +36,7 @@ Because of possible binary incompatibilities here are the dependency versions us
 |         0.7.1-RC1  |     3.2.1     |     1.0.0-RC1 |
 |         0.7.1      |     3.2.1     |     1.0.x     |
 |         0.8        |     3.2.3     |     1.2.x     |
+|         0.9        |     3.2.3     |     1.5.x     |
 
 Artifacts are publicly available on Maven Central starting from version *0.6*.
 
