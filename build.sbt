@@ -22,7 +22,7 @@ scalacOptions ++= Seq(
   "-Ywarn-unused-import"
 )
 
-val catsVersion = "1.2.0"
+val catsVersion = "1.5.0"
 
 libraryDependencies ++= Seq(
   "com.typesafe.slick" %% "slick" % "3.2.3",
