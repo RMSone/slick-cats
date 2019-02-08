@@ -25,7 +25,7 @@ scalacOptions ++= Seq(
 val catsVersion = "1.5.0"
 
 libraryDependencies ++= Seq(
-  "com.typesafe.slick" %% "slick" % "3.2.3",
+  "com.typesafe.slick" %% "slick" % "3.3.0",
   "org.typelevel" %% "cats-core" % catsVersion,
   "org.typelevel" %% "cats-laws" % catsVersion % Test,
   "org.scalatest" %% "scalatest" % "3.0.5" % Test,
