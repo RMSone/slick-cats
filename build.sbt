@@ -3,7 +3,7 @@ name := "slick-cats"
 description := "cats and slick"
 
 scalaVersion := "2.12.4"
-crossScalaVersions := Seq("2.11.12", "2.12.8")
+crossScalaVersions := Seq("2.11.12", "2.12.8","2.13.1")
 
 scalacOptions ++= Seq(
   "-deprecation",
@@ -14,27 +14,24 @@ scalacOptions ++= Seq(
   "-unchecked",
   "-Xfatal-warnings",
   "-Xlint",
-  "-Yno-adapted-args",
   "-Ywarn-dead-code",
   "-Ywarn-numeric-widen",
-  "-Ywarn-value-discard",
-  "-Xfuture",
-  "-Ywarn-unused-import"
+  "-Ywarn-value-discard"
 )
 
-val catsVersion = "1.5.0"
+val catsVersion = "2.0.0"
 
 libraryDependencies ++= Seq(
-  "com.typesafe.slick" %% "slick" % "3.3.0",
+  "com.typesafe.slick" %% "slick" % "3.3.2",
   "org.typelevel" %% "cats-core" % catsVersion,
   "org.typelevel" %% "cats-laws" % catsVersion % Test,
-  "org.scalatest" %% "scalatest" % "3.0.5" % Test,
-  "org.scalacheck" %% "scalacheck" % "1.13.5" % Test
+  "org.scalatest" %% "scalatest" % "3.0.8" % Test,
+  "org.scalacheck" %% "scalacheck" % "1.14.2" % Test
 )
 
-enablePlugins(TutPlugin)
-scalacOptions in Tut --= Seq("-Ywarn-unused-import", "-Xlint")
-tutTargetDirectory := baseDirectory.value
+enablePlugins(MdocPlugin)
+scalacOptions in mdoc --= Seq("-Ywarn-unused-import", "-Xlint")
+mdocOut := baseDirectory.value
 
 licenses += ("BSD New", url("https://opensource.org/licenses/BSD-3-Clause"))
 homepage := Some(url("https://github.com/rmsone/slick-cats"))
