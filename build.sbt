@@ -25,6 +25,7 @@ libraryDependencies ++= Seq(
   "com.typesafe.slick" %% "slick" % "3.3.2",
   "org.typelevel" %% "cats-core" % catsVersion,
   "org.typelevel" %% "cats-laws" % catsVersion % Test,
+  "org.typelevel" %% "discipline-scalatest" % "0.12.0-M3" % Test,
   "org.scalatest" %% "scalatest" % "3.0.8" % Test,
   "org.scalacheck" %% "scalacheck" % "1.14.2" % Test
 )
