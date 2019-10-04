@@ -16,7 +16,8 @@ import cats.laws.discipline._
 import cats.{Comonad, Eq}
 import org.scalacheck.Arbitrary.arbitrary
 import org.scalacheck.{Arbitrary, Cogen, Gen}
-import org.scalatest.{FunSuite, Matchers}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
 import org.typelevel.discipline.scalatest.Discipline
 import slick.dbio.DBIO
 
@@ -25,7 +26,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration._
 import scala.util.{Failure, Success}
 
-class DBIOInstancesTest extends FunSuite with Matchers with Discipline with AllInstances with DBIOInstances {
+class DBIOInstancesTest extends AnyFunSuite with Matchers with Discipline with AllInstances with DBIOInstances {
   private val timeout = 3.seconds
   private val db = slick.memory.MemoryProfile.backend.Database(global)
 

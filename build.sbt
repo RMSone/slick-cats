@@ -25,13 +25,13 @@ libraryDependencies ++= Seq(
   "com.typesafe.slick" %% "slick" % "3.3.2",
   "org.typelevel" %% "cats-core" % catsVersion,
   "org.typelevel" %% "cats-laws" % catsVersion % Test,
+  "org.typelevel" %% "discipline-scalatest" % "1.0.0-RC1" % Test,
   "org.scalatest" %% "scalatest" % "3.0.8" % Test,
   "org.scalacheck" %% "scalacheck" % "1.14.2" % Test
 )
 
 enablePlugins(MdocPlugin)
 scalacOptions in mdoc --= Seq("-Ywarn-unused-import", "-Xlint")
-mdocOut := baseDirectory.value
 
 licenses += ("BSD New", url("https://opensource.org/licenses/BSD-3-Clause"))
 homepage := Some(url("https://github.com/rmsone/slick-cats"))
