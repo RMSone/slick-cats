@@ -2,6 +2,7 @@ SlickCats
 ==========
 
 [Cats](https://github.com/typelevel/cats) instances for [Slick's](http://slick.typesafe.com/) `DBIO` including:
+
 * Monad
 * MonadError
 * CoflatMap
@@ -14,6 +15,7 @@ SlickCats
 * Equals
 
 ## Using
+
 To add *slick-cats* dependency to a project, add the following to your build definition:
 ```scala
 libraryDependencies += "com.rms.miu" %% "slick-cats" % version
@@ -38,10 +40,12 @@ Because of possible binary incompatibilities here are the dependency versions us
 |         0.8        |     3.2.3     |     1.2.x     |
 |         0.9.0      |     3.2.3     |     1.5.x     |
 |         0.9.1      |     3.3.0     |     1.5.x     |
+|         0.10.1      |     3.3.2     |     2.0.0     |
 
 Artifacts are publicly available on Maven Central starting from version *0.6*.
 
 ## Accessing the Instances
+
 Some or all of the following imports may be needed:
 ```scala
 import cats._
@@ -79,6 +83,7 @@ implicitly[Monoid[DBIO[Int]]]
 ```
 
 ## Known Issues
+
 Instances are supplied for `DBIO[A]` only. Despite being the same thing,
 type aliases will not match for implicit conversion. This means that the following
 
@@ -133,6 +138,7 @@ res11: slick.dbio.DBIO[String] = SuccessAction(hello)
 will compile fine.
 
 ## Extras
+
 This README is compiled using [tut](https://github.com/tpolecat/tut) to ensure that only working examples are given.
 Feedback of any kind is appreciated. Especially if you have any ideas on getting around the `DBIOAction` issue above.
 
