@@ -7,7 +7,7 @@ val commonSettings = Seq(
   organization := "com.rms.miu",
 
   scalaVersion := "2.12.10",
-  crossScalaVersions := Seq("2.11.12", "2.12.10","2.13.1"),
+  crossScalaVersions := Seq("2.12.10","2.13.1"),
 
   scalacOptions ++= Seq(
     "-deprecation",
@@ -24,7 +24,7 @@ val commonSettings = Seq(
   )
 )
 
-val catsVersion = "2.0.0"
+val catsVersion = "2.1.0"
 
 lazy val slickcats =
   project.in(file("slick-cats"))
@@ -36,9 +36,9 @@ lazy val slickcats =
         "com.typesafe.slick" %% "slick" % "3.3.2",
         "org.typelevel" %% "cats-core" % catsVersion,
         "org.typelevel" %% "cats-laws" % catsVersion % Test,
-        "org.typelevel" %% "discipline-scalatest" % "1.0.0-RC1" % Test,
-        "org.scalatest" %% "scalatest" % "3.0.8" % Test,
-        "org.scalacheck" %% "scalacheck" % "1.14.2" % Test
+        "org.typelevel" %% "discipline-scalatest" % "1.0.0" % Test,
+        "org.scalatest" %% "scalatest" % "3.1.0" % Test,
+        "org.scalacheck" %% "scalacheck" % "1.14.3" % Test
       )
     )
 

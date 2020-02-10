@@ -41,6 +41,7 @@ Because of possible binary incompatibilities here are the dependency versions us
 |         0.9.0      |     3.2.3     |     1.5.x     |
 |         0.9.1      |     3.3.0     |     1.5.x     |
 |         0.10.1      |     3.3.2     |     2.0.0     |
+|         0.10.2      |     3.3.2     |     2.1.0     |
 
 Artifacts are publicly available on Maven Central starting from version *0.6*.
 
