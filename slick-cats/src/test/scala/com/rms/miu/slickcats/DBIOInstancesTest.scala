@@ -18,7 +18,8 @@ import org.scalacheck.Arbitrary.arbitrary
 import org.scalacheck.{Arbitrary, Cogen, Gen}
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
-import org.typelevel.discipline.scalatest.Discipline
+import org.scalatestplus.scalacheck.Checkers
+import org.typelevel.discipline.scalatest.FunSuiteDiscipline
 import slick.dbio.DBIO
 
 import scala.concurrent.Await
@@ -26,9 +27,10 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration._
 import scala.util.{Failure, Success}
 
-class DBIOInstancesTest extends AnyFunSuite with Matchers with Discipline with AllInstances with DBIOInstances {
+class DBIOInstancesTest extends AnyFunSuite with Matchers with FunSuiteDiscipline with Checkers with AllInstances with DBIOInstances {
   private val timeout = 3.seconds
   private val db = slick.memory.MemoryProfile.backend.Database(global)
+
 
   def dbioEither[A](f: DBIO[A]): DBIO[Either[Throwable, A]] =
     f.map(Right[Throwable, A]).asTry.map {
