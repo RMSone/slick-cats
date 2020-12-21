@@ -9,7 +9,7 @@
 package com.rms.miu.slickcats
 
 import cats._
-import cats.implicits._
+import cats.syntax.all._
 import slick.basic.BasicBackend
 import slick.dbio._
 

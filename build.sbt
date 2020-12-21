@@ -24,7 +24,7 @@ val commonSettings = Seq(
   )
 )
 
-val catsVersion = "2.1.0"
+val catsVersion = "2.2.0"
 
 lazy val slickcats =
   project.in(file("slick-cats"))
