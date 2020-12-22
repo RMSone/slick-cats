@@ -9,10 +9,10 @@
 package com.rms.miu.slickcats
 
 import cats.data.EitherT
-import cats.implicits._
 import cats.instances.AllInstances
 import cats.laws.discipline.SemigroupalTests.Isomorphisms
 import cats.laws.discipline._
+import cats.syntax.all._
 import cats.{Comonad, Eq}
 import org.scalacheck.Arbitrary.arbitrary
 import org.scalacheck.{Arbitrary, Cogen, Gen}
