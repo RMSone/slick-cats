@@ -19,28 +19,14 @@ To add *slick-cats* dependency to a project, add the following to your build def
 libraryDependencies += "com.rms.miu" %% "slick-cats" % version
 ```
 
-Because of possible binary incompatibilities here are the dependency versions used in each release
+Because of possible binary incompatibilities, here are the dependency versions used in each release:
 
 | slick-cats version | slick version | cats version  |
 |:------------------:|:-------------:|:------------: |
-|         0.1        |     3.1.1     |     0.5.0     |
-|         0.2        |     3.1.1     |     0.6.0     |
-|         0.3        |     3.1.1     |     0.7.0     |
-|         0.4        |     3.1.1     |     0.8.x     |
-|         0.4.1      |     3.1.1     |     0.9.x     |
-|         0.5-M1     |     3.2.0-M2  |     0.8.x     |
-|         0.5-M2     |     3.2.0-M2  |     0.9.x     |
-|         0.5        |     3.2.0     |     0.9.x     |
-|         0.6        |     3.2.0     |     0.9.x     |
-|         0.7-MF     |     3.2.1     |     1.0.0-MF  |
-|         0.7.1-RC1  |     3.2.1     |     1.0.0-RC1 |
-|         0.7.1      |     3.2.1     |     1.0.x     |
-|         0.8        |     3.2.3     |     1.2.x     |
-|         0.9.0      |     3.2.3     |     1.5.x     |
-|         0.9.1      |     3.3.0     |     1.5.x     |
-|         0.10.1     |     3.3.2     |     2.0.0     |
-|         0.10.2     |     3.3.2     |     2.1.0     |
+|         0.10.4     |     3.3.3     |     2.3.1     |
 |         0.10.3     |     3.3.2     |     2.2.0     |
+|         0.10.2     |     3.3.2     |     2.1.0     |
+|         0.10.1     |     3.3.2     |     2.0.0     |
 
 Artifacts are publicly available on Maven Central starting from version *0.6*.
 
@@ -48,12 +34,11 @@ Artifacts are publicly available on Maven Central starting from version *0.6*.
 Some or all of the following imports may be needed:
 ```scala mdoc:silent
 import cats._
-import cats.syntax.all._
 import slick.dbio._
 import com.rms.miu.slickcats.DBIOInstances._
 ```
 Additionally, be sure to have an implicit `ExecutionContext` in scope. The implicit conversions require it
-and will fail with non obvious errors if it's missing.
+and will fail with non-obvious errors if it's missing.
 ```scala mdoc:fail
 implicitly[Monad[DBIO]]
 ```
@@ -101,6 +86,4 @@ monad(success)
 will compile fine.
 
 ## Extras
-This README is compiled using [tut](https://github.com/tpolecat/tut) to ensure that only working examples are given.
-Feedback of any kind is appreciated. Especially if you have any ideas on getting around the `DBIOAction` issue above.
-
+This README is compiled using [mdoc](https://scalameta.org/mdoc/) to ensure that only working examples are given.

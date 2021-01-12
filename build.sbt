@@ -6,8 +6,8 @@ publish / skip := true
 val commonSettings = Seq(
   organization := "com.rms.miu",
 
-  scalaVersion := "2.12.10",
-  crossScalaVersions := Seq("2.12.10","2.13.1"),
+  scalaVersion := "2.12.12",
+  crossScalaVersions := Seq("2.12.12","2.13.4"),
 
   scalacOptions ++= Seq(
     "-deprecation",
@@ -24,7 +24,7 @@ val commonSettings = Seq(
   )
 )
 
-val catsVersion = "2.2.0"
+val catsVersion = "2.3.1"
 
 lazy val slickcats =
   project.in(file("slick-cats"))
@@ -33,12 +33,12 @@ lazy val slickcats =
       name := "slick-cats",
       description := "Cats instances for Slick's DBIO",
       libraryDependencies ++= Seq(
-        "com.typesafe.slick" %% "slick" % "3.3.2",
+        "com.typesafe.slick" %% "slick" % "3.3.3",
         "org.typelevel" %% "cats-core" % catsVersion,
         "org.typelevel" %% "cats-laws" % catsVersion % Test,
-        "org.typelevel" %% "discipline-scalatest" % "1.0.0" % Test,
-        "org.scalatest" %% "scalatest" % "3.1.0" % Test,
-        "org.scalacheck" %% "scalacheck" % "1.14.3" % Test
+        "org.typelevel" %% "discipline-scalatest" % "2.1.1" % Test,
+        "org.scalatest" %% "scalatest" % "3.2.3" % Test,
+        "org.scalacheck" %% "scalacheck" % "1.15.2" % Test
       )
     )
 
