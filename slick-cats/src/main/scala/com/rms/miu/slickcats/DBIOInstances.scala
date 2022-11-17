@@ -99,24 +99,15 @@ private[slickcats] sealed trait DBIOInstances0 extends DBIOInstances1 {
     }
 
   def dbioOrder[A: Order](atMost: FiniteDuration, db: BasicBackend#DatabaseDef)(implicit ec: ExecutionContext): Order[DBIO[A]] =
-    new Order[DBIO[A]] {
-      def compare(x: DBIO[A], y: DBIO[A]): Int =
-        Await.result(db.run((x zip y).map { case (a, b) => a compare b }), atMost)
-    }
+    (x: DBIO[A], y: DBIO[A]) => Await.result(db.run((x zip y).map { case (a, b) => a compare b }), atMost)
 }
 
 private[slickcats] sealed trait DBIOInstances1 extends DBIOInstances2 {
   def dbioPartialOrder[A: PartialOrder](atMost: FiniteDuration, db: BasicBackend#DatabaseDef)(implicit ec: ExecutionContext): PartialOrder[DBIO[A]] =
-    new PartialOrder[DBIO[A]] {
-      def partialCompare(x: DBIO[A], y: DBIO[A]): Double =
-        Await.result(db.run((x zip y).map { case (a, b) => a partialCompare b }), atMost)
-    }
+    (x: DBIO[A], y: DBIO[A]) => Await.result(db.run((x zip y).map { case (a, b) => a partialCompare b }), atMost)
 }
 
 private[slickcats] sealed trait DBIOInstances2 {
   def dbioEq[A: Eq](atMost: FiniteDuration, db: BasicBackend#DatabaseDef)(implicit ec: ExecutionContext): Eq[DBIO[A]] =
-    new Eq[DBIO[A]] {
-      def eqv(x: DBIO[A], y: DBIO[A]): Boolean =
-        Await.result(db.run((x zip y).map { case (a, b) => a === b }), atMost)
-    }
+    (x: DBIO[A], y: DBIO[A]) => Await.result(db.run((x zip y).map { case (a, b) => a === b }), atMost)
 }

@@ -39,20 +39,16 @@ class DBIOInstancesTest extends AnyFunSuite with Matchers with FunSuiteDisciplin
     }
 
   implicit def eqfa[A: Eq]: Eq[DBIO[A]] =
-    new Eq[DBIO[A]] {
-      def eqv(fx: DBIO[A], fy: DBIO[A]): Boolean = {
-        val fz = dbioEither(fx) zip dbioEither(fy)
-        Await.result(db.run(fz.map { case (tx, ty) => tx === ty }), timeout)
-      }
+    (fx: DBIO[A], fy: DBIO[A]) => {
+      val fz = dbioEither(fx) zip dbioEither(fy)
+      Await.result(db.run(fz.map { case (tx, ty) => tx === ty }), timeout)
     }
 
   // Implicit resolution has a hard time with DBIO[A] vs DBIOAction[A, NoStream, All] nested in EitherT etc.
   implicit def eqEitherTDbio[A: Eq]: Eq[EitherT[DBIO, Throwable, A]] = {
-    new Eq[EitherT[DBIO, Throwable, A]] {
-      override def eqv(x: EitherT[DBIO, Throwable, A], y: EitherT[DBIO, Throwable, A]): Boolean = {
-        val fz = x.value zip y.value
-        Await.result(db.run(fz.map { case (tx, ty) => tx === ty }), timeout)
-      }
+    (x: EitherT[DBIO, Throwable, A], y: EitherT[DBIO, Throwable, A]) => {
+      val fz = x.value zip y.value
+      Await.result(db.run(fz.map { case (tx, ty) => tx === ty }), timeout)
     }
   }
 
