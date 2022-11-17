@@ -25,6 +25,7 @@ Because of possible binary incompatibilities, here are the dependency versions u
 
 | slick-cats version | slick version | cats version |
 |:------------------:|:-------------:|:------------:|
+|       0.10.5       |     3.4.1     |    2.9.0     |
 |       0.10.4       |     3.3.3     |    2.3.1     |
 |       0.10.3       |     3.3.2     |    2.2.0     |
 |       0.10.2       |     3.3.2     |    2.1.0     |
@@ -47,7 +48,7 @@ and will fail with non-obvious errors if it's missing.
 
 ```scala
 implicitly[Monad[DBIO]]
-// error: Could not find an instance of Monad for slick.dbio.DBIO
+// error: could not find implicit value for parameter e: cats.Monad[slick.dbio.DBIO]
 // implicitly[Monad[DBIO]]
 // ^^^^^^^^^^^^^^^^^^^^^^^
 ```
@@ -95,11 +96,9 @@ will _not_ compile
 ```scala
 monad(fail1)
 monad(fail2)
-// error: no type parameters for method monad: (fa: F[A])(implicit evidence$1: cats.Monad[F])F[A] exist so that it can be applied to arguments (slick.dbio.DBIOAction[String,slick.dbio.NoStream,slick.dbio.Effect.All])
-//  --- because ---
-// argument expression's type is not compatible with formal parameter type;
-//  found   : slick.dbio.DBIOAction[String,slick.dbio.NoStream,slick.dbio.Effect.All]
-//  required: ?F[?A]
+// error: inferred kinds of the type arguments ([-E <: slick.dbio.Effect]slick.dbio.DBIOAction[String,slick.dbio.NoStream,E],slick.dbio.Effect.All) do not conform to the expected kinds of the type parameters (type F,type A).
+// [-E <: slick.dbio.Effect]slick.dbio.DBIOAction[String,slick.dbio.NoStream,E]'s type parameters do not match type F's expected parameters:
+// type E's bounds <: slick.dbio.Effect are stricter than type _'s declared bounds >: Nothing <: Any
 // monad(fail1)
 // ^^^^^
 // error: type mismatch;
@@ -107,11 +106,9 @@ monad(fail2)
 //  required: F[A]
 // monad(fail1)
 //       ^^^^^
-// error: no type parameters for method monad: (fa: F[A])(implicit evidence$1: cats.Monad[F])F[A] exist so that it can be applied to arguments (slick.dbio.DBIOAction[String,slick.dbio.NoStream,slick.dbio.Effect])
-//  --- because ---
-// argument expression's type is not compatible with formal parameter type;
-//  found   : slick.dbio.DBIOAction[String,slick.dbio.NoStream,slick.dbio.Effect]
-//  required: ?F[?A]
+// error: inferred kinds of the type arguments ([-E <: slick.dbio.Effect]slick.dbio.DBIOAction[String,slick.dbio.NoStream,E],slick.dbio.Effect) do not conform to the expected kinds of the type parameters (type F,type A).
+// [-E <: slick.dbio.Effect]slick.dbio.DBIOAction[String,slick.dbio.NoStream,E]'s type parameters do not match type F's expected parameters:
+// type E's bounds <: slick.dbio.Effect are stricter than type _'s declared bounds >: Nothing <: Any
 // monad(fail2)
 // ^^^^^
 // error: type mismatch;
