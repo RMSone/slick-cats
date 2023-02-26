@@ -49,7 +49,7 @@ lazy val docs =
     .settings(commonSettings)
     .settings(
       name := "slick-cats-docs",
-      scalacOptions in mdoc --= Seq("-Ywarn-unused-import", "-Xlint"),
+      mdoc / scalacOptions --= Seq("-Ywarn-unused-import", "-Xlint"),
       publish / skip := true
     )
 
@@ -70,7 +70,7 @@ developers := List(
 publishMavenStyle := true
 publishTo := Some(
   if (isSnapshot.value)
-    Opts.resolver.sonatypeSnapshots
+    Opts.resolver.sonatypeOssSnapshots
   else
     Opts.resolver.sonatypeStaging
 )
