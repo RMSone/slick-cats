@@ -1,11 +1,11 @@
-val scala212 = "2.12.18"
-val scala213 = "2.13.12"
-val scala3 = "3.3.1"
-
 name := "slick-cats-parent"
 
 sourcesInBase := false
 publish / skip := true
+
+val scala212 = "2.12.18"
+val scala213 = "2.13.12"
+val scala3 = "3.3.1"
 
 val commonSettings = Seq(
   organization := "com.rms.miu",
@@ -39,7 +39,7 @@ lazy val docs =
     .settings(commonSettings)
     .settings(
       name := "slick-cats-docs",
-      mdoc / scalacOptions --= Seq("-Ywarn-unused-import", "-Xlint"),
+      mdocOut := baseDirectory.value / "..",
       publish / skip := true
     )
 
