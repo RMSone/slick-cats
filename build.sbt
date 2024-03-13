@@ -5,7 +5,7 @@ publish / skip := true
 
 val scala212 = "2.12.18"
 val scala213 = "2.13.12"
-val scala3 = "3.3.1"
+val scala3 = "3.4.0"
 
 val commonSettings = Seq(
   organization := "com.rms.miu",
@@ -23,7 +23,7 @@ lazy val slickcats =
       name := "slick-cats",
       description := "Cats instances for Slick's DBIO",
       libraryDependencies ++= Seq(
-        "com.typesafe.slick" %% "slick" % "3.5.0-M5",
+        "com.typesafe.slick" %% "slick" % "3.5.0",
         "org.typelevel" %% "cats-core" % catsVersion,
         "org.typelevel" %% "cats-laws" % catsVersion % Test,
         "org.typelevel" %% "discipline-scalatest" % "2.2.0" % Test,
