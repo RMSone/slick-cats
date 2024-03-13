@@ -23,6 +23,7 @@ Because of possible binary incompatibilities, here are the dependency versions u
 
 | slick-cats version | slick version | cats version |
 |:------------------:|:-------------:|:------------:|
+|       0.10.6       |     3.5.0     |    2.10.0    |
 |       0.10.5       |     3.4.1     |    2.9.0     |
 |       0.10.4       |     3.3.3     |    2.3.1     |
 |       0.10.3       |     3.3.2     |    2.2.0     |

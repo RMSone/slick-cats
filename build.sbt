@@ -3,28 +3,18 @@ name := "slick-cats-parent"
 sourcesInBase := false
 publish / skip := true
 
+val scala212 = "2.12.18"
+val scala213 = "2.13.12"
+val scala3 = "3.4.0"
+
 val commonSettings = Seq(
   organization := "com.rms.miu",
 
-  scalaVersion := "2.13.10",
-  crossScalaVersions := Seq("2.12.17","2.13.10"),
-
-  scalacOptions ++= Seq(
-    "-deprecation",
-    "-encoding", "UTF-8",
-    "-feature",
-    "-language:implicitConversions",
-    "-language:higherKinds",
-    "-unchecked",
-    "-Xfatal-warnings",
-    "-Xlint",
-    "-Ywarn-dead-code",
-    "-Ywarn-numeric-widen",
-    "-Ywarn-value-discard"
-  )
+  scalaVersion := scala213,
+  crossScalaVersions := Seq(scala212, scala213, scala3)
 )
 
-val catsVersion = "2.9.0"
+val catsVersion = "2.10.0"
 
 lazy val slickcats =
   project.in(file("slick-cats"))
@@ -33,11 +23,11 @@ lazy val slickcats =
       name := "slick-cats",
       description := "Cats instances for Slick's DBIO",
       libraryDependencies ++= Seq(
-        "com.typesafe.slick" %% "slick" % "3.4.1",
+        "com.typesafe.slick" %% "slick" % "3.5.0",
         "org.typelevel" %% "cats-core" % catsVersion,
         "org.typelevel" %% "cats-laws" % catsVersion % Test,
         "org.typelevel" %% "discipline-scalatest" % "2.2.0" % Test,
-        "org.scalatest" %% "scalatest" % "3.2.14" % Test,
+        "org.scalatest" %% "scalatest" % "3.2.17" % Test,
         "org.scalacheck" %% "scalacheck" % "1.17.0" % Test
       )
     )
@@ -49,7 +39,7 @@ lazy val docs =
     .settings(commonSettings)
     .settings(
       name := "slick-cats-docs",
-      mdoc / scalacOptions --= Seq("-Ywarn-unused-import", "-Xlint"),
+      mdocOut := baseDirectory.value / "..",
       publish / skip := true
     )
 
@@ -68,9 +58,10 @@ developers := List(
 )
 
 publishMavenStyle := true
-publishTo := Some(
+publishTo := {
+  val nexus = "https://oss.sonatype.org/"
   if (isSnapshot.value)
-    Opts.resolver.sonatypeOssSnapshots
+    Some("snapshots" at nexus + "content/repositories/snapshots")
   else
-    Opts.resolver.sonatypeStaging
-)
+    Some("releases" at nexus + "service/local/staging/deploy/maven2")
+}
